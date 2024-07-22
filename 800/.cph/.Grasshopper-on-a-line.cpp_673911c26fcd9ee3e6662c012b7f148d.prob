@@ -1,0 +1,1 @@
+{"name":"Local: Grasshopper-on-a-line","url":"c:\\Users\\VARUN PUNIA\\Desktop\\CP31\\800\\Grasshopper-on-a-line.cpp","tests":[{"id":1720014582137,"input":"3\n10 2\n10 3\n3 4\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\VARUN PUNIA\\Desktop\\CP31\\800\\Grasshopper-on-a-line.cpp","group":"local","local":true}

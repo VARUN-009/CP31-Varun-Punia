@@ -1,0 +1,1 @@
+{"name":"Local: Coins","url":"c:\\Users\\VARUN PUNIA\\Desktop\\CP31\\800\\Coins.cpp","tests":[{"id":1720032920231,"input":"4\n5 3\n6 1\n7 4\n8 8\n","output":"YES\nYES\nNO\nYES\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\VARUN PUNIA\\Desktop\\CP31\\800\\Coins.cpp","group":"local","local":true}

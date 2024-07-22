@@ -1,0 +1,1 @@
+{"name":"Local: Forbidden-integer","url":"c:\\Users\\VARUN PUNIA\\Desktop\\CP31\\800\\Forbidden-integer.cpp","tests":[{"id":1720004926576,"input":"5\n10 3 2\n5 2 1\n4 2 1\n7 7 3\n6 1 1\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\VARUN PUNIA\\Desktop\\CP31\\800\\Forbidden-integer.cpp","group":"local","local":true}
