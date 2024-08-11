@@ -7,6 +7,7 @@ void vishu()
     int n;
     cin >> n;
     int neg = 0, pos = 0;
+    int ans = 0;
     for (int i = 0; i < n; i++)
     {
         int data;
@@ -22,50 +23,22 @@ void vishu()
         }
     }
 
-    if (neg == n)
+    // first check for the sum >= 0 m chahta hu ki 1 mere atleast equal ho jaye -1 if km hai toh
+    if (pos < neg)
     {
-        cout << n << endl;
-        return;
-    }
-
-    if (pos == n)
-    {
-        cout << 0 << endl;
-        return;
-    }
-
-    if (pos >= neg)
-    {
-        if (neg % 2 != 0)
-        {
-            cout << 1 << endl;
-            return;
-        }
-        else
-        {
-            cout << 0 << endl;
-            return;
+        while(pos < neg) {
+            pos++;
+            neg--;
+            ans++;
         }
     }
 
-    if (neg > pos)
-    {
-        int total = (neg + pos);
-        // cout << req << endl;
-        if(total % 2 == 0) {
-            cout << (total/2) - pos << endl;
-        }
-        else {
-            int req = (total/2) + 1; // 1 extra for odd
-            if((total - req) % 2 != 0) {
-                cout << req - pos + 1 << endl;
-            }
-            else {
-                cout << req - pos << endl;
-            }
-        }
-        
+    // for product=1 I want ki -1 mere even ho
+    if(neg % 2) {
+        ans++;
     }
+
+    cout << ans << endl;
 }
 
 int main()

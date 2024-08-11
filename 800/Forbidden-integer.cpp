@@ -7,21 +7,54 @@ void vishu()
     int n, k, x;
     cin >> n >> k >> x;
 
-    for (int i = k; i >= 1; i--)
+    // case - 1 ki x!=1 which means ki m kitni hi baar 1 le sakta hu
+    if (x != 1)
     {
-        if (i != x && n % i == 0)
+        cout << "YES" << endl;
+        cout << n << endl;
+        for (int i = 1; i <= n; i++)
         {
-            cout << "YES" << endl;
-            cout << n/i << endl;
-            for (int j = 1; j <= n / i; j++)
-            {
-                cout << i << " ";
-            }
-            cout << endl;
-            return;
+            cout << 1 << " ";
         }
+        cout << endl;
+        return;
     }
-    cout << "NO" << endl;
+
+    // case-2 x==1 which means m 1 ni le sakta toh ab agr ye check karlo ki k==1
+    if (k == 1)
+    {
+        cout << "NO" << endl;
+        return;
+    }
+
+    // case - 3 now x is 1 and k != 1 n is odd but i can only take till 2 but n is odd so cannot be done
+    if (k == 2 && n % 2)
+    {
+        cout << "NO" << endl;
+        return;
+    }
+
+    // case-4 now k 2 hoga toh n is even which can be done and if k != 2 (let's say k is 3) then n can be odd or even both of which can be done
+    cout << "YES" << endl;
+    if (n % 2 == 0)
+    {
+        cout << n / 2 << endl;
+        for (int i = 1; i <= n / 2; i++)
+        {
+            cout << 2 << " ";
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << n / 2 << endl;
+        cout << 3 << " ";
+        for (int i = 1; i <= n / 2 - 1; i++)
+        {
+            cout << 2 << " ";
+        }
+        cout << endl;
+    }
 }
 
 int main()

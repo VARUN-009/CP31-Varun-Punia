@@ -5,28 +5,18 @@ using namespace std;
 
 void vishu()
 {
-    int n, k;
+    ll n, k;
     cin >> n >> k;
 
-    if (n % k == 0 || n % 2 == 0)
+    // agr 2 ka multiple hai n toh 2 hi leke kaam chl jayega warna n is odd then k mera 1 hona chahiye jis se ki number bna saku
+
+    if (n % 2 == 0 || k % 2)
     {
         cout << "YES" << endl;
     }
     else
     {
-        
-        // if ((n - k) % 2 == 0)
-        // {
-        //     cout << "YES" << endl;
-        // }
-        // else if ((n - 2) % k == 0)
-        // {
-        //     cout << "YES" << endl;
-        // }
-        // else
-        // {
-        //     cout << "NO" << endl;
-        // }
+        cout << "NO" << endl;
     }
 }
 
@@ -41,3 +31,31 @@ int main()
     }
     return 0;
 }
+
+/*
+A MORE MATHEMATICAL SOLUTION
+#include <bits/stdc++.h>
+#include <numeric> // For std::gcd
+
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        // ax + by = c is called linear diophantine equations and for this to happen gcd(a,b) should divide c basically gcd(a,b) % n == 0. This was a maths oriented question.
+        long long n, k;
+        cin >> n >> k;
+
+        if (n % std::gcd(2LL, k)) {
+            cout << "NO" << endl;
+        } else {
+            cout << "YES" << endl;
+        }
+    }
+
+    return 0;
+}
+
+*/
