@@ -1,0 +1,1 @@
+{"name":"Local: Make-it-divisible-by-25","url":"c:\\Users\\VARUN PUNIA\\Desktop\\CP31\\900\\Make-it-divisible-by-25.cpp","tests":[{"id":1723993484419,"input":"5\n100\n71345\n3259\n50555\n2050047\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\VARUN PUNIA\\Desktop\\CP31\\900\\Make-it-divisible-by-25.cpp","group":"local","local":true}
