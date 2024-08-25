@@ -15,7 +15,7 @@ const int MOD = 1e9 + 7;
 
 // Control Flow
 #define loop(i, a, b) for (int i = a; i < (b); i++)
-#define rloop(i, a, b) for (int i = (b) - 1; i >= a; i--)
+#define rloop(i, b, a) for (int i = (b) - 1; i >= a; i--)
 #define trav(a, x) for (auto &a : x)
 
 // Helper Functions
@@ -24,35 +24,29 @@ bool even(int num) { return ((num & 1) == 0); }
 
 void vishu()
 {
-    int n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
 
-    vi(n);
-    loop(i, 0, n)
+    vi(n + 1, 0);
+
+    loop(i, 1, n+1)
     {
         cin >> vec[i];
     }
 
-    sort(all(vec));
+    // Agr saare 0 hoge toh ans is 0 and saare non zero toh ans is 1. Answer humesha 0 1 2 m se ek hoga combination hai and non zero ka toh m vo part uthaunga jo 2 zero ke beech m hai and usko 0 bna dunga and ans++;
 
     int ans = 0;
-    int count = 1;
-    loop(i, 1, n)
+
+    loop(i, 1, n+1)
     {
-        if (vec[i] - vec[i-1] > k)
+        if (vec[i - 1] == 0 && vec[i] != 0)
         {
-            ans = max(ans, count);
-            count = 1;
-        }
-        else
-        {
-            count++;
+            ans++;
         }
     }
 
-    ans = max(ans, count);
-
-    cout << n - ans << endl;
+    cout << min(ans, 2LL) << endl;
 }
 
 int32_t main()

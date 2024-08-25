@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
-#define vi vector<int> vec
 
 // Constants
 const int MOD = 1e9 + 7;
 
 // Utils
+#define int long long
+#define vi vector<int> vec
 #define len(x) (x).size()
 #define pb push_back
 #define all(n) n.begin(), n.end()
@@ -27,32 +27,23 @@ void vishu()
     int n, k;
     cin >> n >> k;
 
-    vi(n);
-    loop(i, 0, n)
+    vi(n * k);
+    loop(i, 0, n * k)
     {
         cin >> vec[i];
     }
 
-    sort(all(vec));
-
+    // m humesha chahunga ki mera mid element bada ho toh last se ho and like 5 hai toh 2 start ke ho and 3 last ke toh n/2 karunga toh mid mera last m se ek hoga and ye mujhe k times karna hai bss
     int ans = 0;
-    int count = 1;
-    loop(i, 1, n)
+    int required = (n / 2) + 1;
+    int idx = len(vec) - required;
+    while (k--)
     {
-        if (vec[i] - vec[i-1] > k)
-        {
-            ans = max(ans, count);
-            count = 1;
-        }
-        else
-        {
-            count++;
-        }
+        ans += vec[idx];
+        idx -= required;
     }
 
-    ans = max(ans, count);
-
-    cout << n - ans << endl;
+    cout << ans << endl;
 }
 
 int32_t main()

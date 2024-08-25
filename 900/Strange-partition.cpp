@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
-#define vi vector<int> vec
 
 // Constants
 const int MOD = 1e9 + 7;
 
 // Utils
+#define int long long
+#define vi vector<int> vec
 #define len(x) (x).size()
 #define pb push_back
 #define all(n) n.begin(), n.end()
@@ -24,8 +24,8 @@ bool even(int num) { return ((num & 1) == 0); }
 
 void vishu()
 {
-    int n, k;
-    cin >> n >> k;
+    int n, x;
+    cin >> n >> x;
 
     vi(n);
     loop(i, 0, n)
@@ -33,26 +33,18 @@ void vishu()
         cin >> vec[i];
     }
 
-    sort(all(vec));
-
-    int ans = 0;
-    int count = 1;
-    loop(i, 1, n)
+    // guess bss ye hi tha ki ya toh sum ko divide karo x se ya toh individually divide karo elements ko x se and mathematically bhi (a+b)/x <= a/x + b/x; toh sum wala chotta hoga and individual wala bada hoga
+    int ans1 = 0;
+    trav(num, vec)
     {
-        if (vec[i] - vec[i-1] > k)
-        {
-            ans = max(ans, count);
-            count = 1;
-        }
-        else
-        {
-            count++;
-        }
+        ans1 += num / x + (num % x != 0);
     }
 
-    ans = max(ans, count);
+    // dont't forget to convert 0 to 0LL
+    int sum = accumulate(all(vec), 0LL);
+    int ans2 = sum / x + (sum % x != 0);
 
-    cout << n - ans << endl;
+    cout << ans2 << " " << ans1 << endl;
 }
 
 int32_t main()

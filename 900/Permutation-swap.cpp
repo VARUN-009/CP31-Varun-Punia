@@ -24,35 +24,27 @@ bool even(int num) { return ((num & 1) == 0); }
 
 void vishu()
 {
-    int n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
 
     vi(n);
+    int idx = 0;
     loop(i, 0, n)
     {
         cin >> vec[i];
     }
 
-    sort(all(vec));
-
     int ans = 0;
-    int count = 1;
-    loop(i, 1, n)
+    // ek number hai and toh check karlo ki usko konse index m hona chahiye tha toh k mujhe aisa lena padega jo sabko divide karta ho example ki diff aarha h 2 4 6 toh k lelo 2 toh sabko sahi jagah par rakh sakte ho then tum sabse bada number jo sabko divide karta ho toh gcd lena padega 
+    loop(i, 0, n)
     {
-        if (vec[i] - vec[i-1] > k)
-        {
-            ans = max(ans, count);
-            count = 1;
-        }
-        else
-        {
-            count++;
+        if(vec[i] != i+1) {
+            int diff = abs(i - (vec[i]-1));
+            ans = __gcd(ans, diff);
         }
     }
 
-    ans = max(ans, count);
-
-    cout << n - ans << endl;
+    cout << ans << endl;
 }
 
 int32_t main()

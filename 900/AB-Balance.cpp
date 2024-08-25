@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
-#define vi vector<int> vec
 
 // Constants
 const int MOD = 1e9 + 7;
 
 // Utils
+#define int long long
+#define vi vector<int> vec
 #define len(x) (x).size()
 #define pb push_back
 #define all(n) n.begin(), n.end()
@@ -24,35 +24,22 @@ bool even(int num) { return ((num & 1) == 0); }
 
 void vishu()
 {
-    int n, k;
-    cin >> n >> k;
+    string str;
+    cin >> str;
 
-    vi(n);
-    loop(i, 0, n)
+    // twist bss itna hai ki agr first and last character same hai toh ab will always be equal to ba.
+    // and agr ni hai toh make them equal 
+    // kabhi kabhi lagta hai ki mere andar hi dimaag ni hai, itni ittu si cheej ni observe kar paya m
+
+    if (str[0] == str[len(str) - 1])
     {
-        cin >> vec[i];
+        cout << str << endl;
     }
-
-    sort(all(vec));
-
-    int ans = 0;
-    int count = 1;
-    loop(i, 1, n)
+    else
     {
-        if (vec[i] - vec[i-1] > k)
-        {
-            ans = max(ans, count);
-            count = 1;
-        }
-        else
-        {
-            count++;
-        }
+        str[0] = str[len(str) - 1];
+        cout << str << endl;
     }
-
-    ans = max(ans, count);
-
-    cout << n - ans << endl;
 }
 
 int32_t main()

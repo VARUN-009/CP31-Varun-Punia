@@ -24,35 +24,33 @@ bool even(int num) { return ((num & 1) == 0); }
 
 void vishu()
 {
-    int n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
 
     vi(n);
     loop(i, 0, n)
     {
         cin >> vec[i];
+        // pehle se hi 1 ko badha do kyuki 1 toh har kisi ko divide kar hi dega na
+        if (vec[i] == 1)
+        {
+            vec[i]++;
+        }
     }
 
-    sort(all(vec));
-
-    int ans = 0;
-    int count = 1;
     loop(i, 1, n)
     {
-        if (vec[i] - vec[i-1] > k)
+        if (vec[i] % vec[i - 1] == 0)
         {
-            ans = max(ans, count);
-            count = 1;
-        }
-        else
-        {
-            count++;
+            vec[i]++;
         }
     }
 
-    ans = max(ans, count);
-
-    cout << n - ans << endl;
+    trav(a, vec)
+    {
+        cout << a << " ";
+    }
+    cout << endl;
 }
 
 int32_t main()

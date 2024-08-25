@@ -1,0 +1,1 @@
+{"name":"Local: Not-dividing","url":"c:\\Users\\VARUN PUNIA\\Desktop\\CP31\\900\\Not-dividing.cpp","tests":[{"id":1724177839582,"input":"3\n4\n2 4 3 6\n3\n1 2 3\n2\n4 2\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\VARUN PUNIA\\Desktop\\CP31\\900\\Not-dividing.cpp","group":"local","local":true}

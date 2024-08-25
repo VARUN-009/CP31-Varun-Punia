@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
-#define vi vector<int> vec
 
 // Constants
 const int MOD = 1e9 + 7;
 
 // Utils
+#define int long long
+#define vi vector<int> vec
 #define len(x) (x).size()
 #define pb push_back
 #define all(n) n.begin(), n.end()
@@ -24,35 +24,31 @@ bool even(int num) { return ((num & 1) == 0); }
 
 void vishu()
 {
-    int n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
 
     vi(n);
     loop(i, 0, n)
     {
         cin >> vec[i];
     }
-
-    sort(all(vec));
-
     int ans = 0;
-    int count = 1;
-    loop(i, 1, n)
+    rloop(i, 0, n - 1)
     {
-        if (vec[i] - vec[i-1] > k)
+        while (vec[i] >= vec[i + 1] && vec[i] > 0)
         {
-            ans = max(ans, count);
-            count = 1;
+            vec[i] /= 2;
+            ans++;
         }
-        else
+
+        if (vec[i] == vec[i+1])
         {
-            count++;
+            cout << -1 << endl;
+            return;
         }
     }
 
-    ans = max(ans, count);
-
-    cout << n - ans << endl;
+    cout << ans << endl;
 }
 
 int32_t main()
