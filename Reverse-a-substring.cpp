@@ -7,6 +7,7 @@ const int MOD = 1e9 + 7;
 // Utils
 #define int long long
 #define vi vector<int>
+#define vii vector<vector<int>>
 #define len(x) (x).size()
 #define pb push_back
 #define all(n) n.begin(), n.end()
@@ -21,32 +22,34 @@ const int MOD = 1e9 + 7;
 // Helper Functions
 bool odd(int num) { return ((num & 1) == 1); }
 bool even(int num) { return ((num & 1) == 0); }
+int __lcm(int a, int b) { return (a * b) / __gcd(a, b); }
 
 void vishu()
 {
     int n;
     cin >> n;
 
-    // if a and b are two numbers and a <= b and b%a==0 then lcm of a b is b toh aisa chahiye jo factor ho and then since a + b = n so m chahta hu bade se bada a ho jiss se ki b km ho jaye toh a factor toh rahega hi b ka and b km because a badd jayega toh we will get the lowest lcm.
-    // sqrt tak hi check kiya hai isko jaan ke uske baad repeat hoge 
-    // if a%b == 0 then a/b % b == 0 eg 50/10 rem=0 then 10/10 rem=0 aise 
-    int num = 1;
-    for (int i = 2; i * i <= n; i++)
+    string str;
+    cin >> str;
+
+    // jo yes and no wale ques hote hai ye usme jaanke aisa example dete h jo confusing ho toh halka sa observe karna hota hai and simple hi hota hai answer
+    loop(i, 0, n - 1)
     {
-        if (n % i == 0)
+        if (str[i] > str[i + 1])
         {
-            num = n / i;
-            break;
+            cout << "YES" << endl;
+            cout << i+1 << " " << i + 2 << endl;
+            return;
         }
     }
 
-    cout << num << " " << n - num << endl;
+    cout << "NO" << endl;
 }
 
 int32_t main()
 {
-    int t;
-    cin >> t;
+    int t = 1;
+    // cin >> t;
 
     while (t--)
     {

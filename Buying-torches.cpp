@@ -21,26 +21,24 @@ const int MOD = 1e9 + 7;
 // Helper Functions
 bool odd(int num) { return ((num & 1) == 1); }
 bool even(int num) { return ((num & 1) == 0); }
+int __lcm(int a, int b) { return (a * b) / __gcd(a, b); }
 
 void vishu()
 {
-    int n;
-    cin >> n;
+    int x, y, k;
+    cin >> x >> y >> k;
 
-    // if a and b are two numbers and a <= b and b%a==0 then lcm of a b is b toh aisa chahiye jo factor ho and then since a + b = n so m chahta hu bade se bada a ho jiss se ki b km ho jaye toh a factor toh rahega hi b ka and b km because a badd jayega toh we will get the lowest lcm.
-    // sqrt tak hi check kiya hai isko jaan ke uske baad repeat hoge 
-    // if a%b == 0 then a/b % b == 0 eg 50/10 rem=0 then 10/10 rem=0 aise 
-    int num = 1;
-    for (int i = 2; i * i <= n; i++)
+    // -1 because abhi toh 1 hi hai and vo jayegi uske baad y*k + k aayegi toh that's why
+    int total = (y * k) + k - 1;
+    int ans = (total / (x - 1)) + k;
+    if (total % (x - 1) != 0)
     {
-        if (n % i == 0)
-        {
-            num = n / i;
-            break;
-        }
+        cout << ans + 1 << endl;
     }
-
-    cout << num << " " << n - num << endl;
+    else
+    {
+        cout << ans << endl;
+    }
 }
 
 int32_t main()

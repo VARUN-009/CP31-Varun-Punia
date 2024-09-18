@@ -1,0 +1,1 @@
+{"name":"Local: Numbers-box","url":"c:\\Users\\VARUN PUNIA\\Desktop\\CP31\\Numbers-box.cpp","tests":[{"id":1726482758053,"input":"2\n2 2\n-1 1\n1 1\n3 4\n0 -1 -2 -3\n-1 -2 -3 -4\n-2 -3 -4 -5\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\VARUN PUNIA\\Desktop\\CP31\\Numbers-box.cpp","group":"local","local":true}

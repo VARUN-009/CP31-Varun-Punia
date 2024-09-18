@@ -21,26 +21,38 @@ const int MOD = 1e9 + 7;
 // Helper Functions
 bool odd(int num) { return ((num & 1) == 1); }
 bool even(int num) { return ((num & 1) == 0); }
+int __lcm(int a, int b) { return (a * b) / __gcd(a, b); }
 
 void vishu()
 {
     int n;
     cin >> n;
 
-    // if a and b are two numbers and a <= b and b%a==0 then lcm of a b is b toh aisa chahiye jo factor ho and then since a + b = n so m chahta hu bade se bada a ho jiss se ki b km ho jaye toh a factor toh rahega hi b ka and b km because a badd jayega toh we will get the lowest lcm.
-    // sqrt tak hi check kiya hai isko jaan ke uske baad repeat hoge 
-    // if a%b == 0 then a/b % b == 0 eg 50/10 rem=0 then 10/10 rem=0 aise 
-    int num = 1;
-    for (int i = 2; i * i <= n; i++)
+    string str;
+    cin >> str;
+
+    int open = 0, close = 0, ans = 0;
+
+    // open mil rha hai toh acha hai na close toh aage milege and agr close hi mile then vo close tujhe aage leke jane padege toh jitne baar close jyada hue then ans++ and un close ko km kardena ki haa tumne gin liye hai unko -- open mile koi dikkat ni hai par agr jyada hi close mil gaye toh pakka unko aage shift karna padega kyuki open=close count
+    loop(i, 0, n)
     {
-        if (n % i == 0)
+        if (str[i] == '(')
         {
-            num = n / i;
-            break;
+            open++;
+        }
+        else
+        {
+            close++;
+        }
+
+        if (close > open)
+        {
+            ans++;
+            close--;
         }
     }
 
-    cout << num << " " << n - num << endl;
+    cout << ans << endl;
 }
 
 int32_t main()

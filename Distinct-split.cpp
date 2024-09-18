@@ -21,26 +21,36 @@ const int MOD = 1e9 + 7;
 // Helper Functions
 bool odd(int num) { return ((num & 1) == 1); }
 bool even(int num) { return ((num & 1) == 0); }
+int __lcm(int a, int b) { return (a * b) / __gcd(a, b); }
 
 void vishu()
 {
     int n;
     cin >> n;
 
-    // if a and b are two numbers and a <= b and b%a==0 then lcm of a b is b toh aisa chahiye jo factor ho and then since a + b = n so m chahta hu bade se bada a ho jiss se ki b km ho jaye toh a factor toh rahega hi b ka and b km because a badd jayega toh we will get the lowest lcm.
-    // sqrt tak hi check kiya hai isko jaan ke uske baad repeat hoge 
-    // if a%b == 0 then a/b % b == 0 eg 50/10 rem=0 then 10/10 rem=0 aise 
-    int num = 1;
-    for (int i = 2; i * i <= n; i++)
+    string str;
+    cin >> str;
+
+    map<char, int> mp1, mp2;
+    trav(ch, str)
     {
-        if (n % i == 0)
+        mp1[ch]++;
+    }
+    int ans = INT_MIN;
+
+    // saare possible partitions lelo bss a bcabcd, ab cabcd, abc abcd and so on...and mp1 m remove karte raho then mp2 m add haa agr remove ke baad 0 ho jaye toh hta do usko and then dono ka size dekhlo kitna hai 
+    trav(ch, str)
+    {
+        mp2[ch]++;
+        mp1[ch]--;
+        if (mp1[ch] == 0)
         {
-            num = n / i;
-            break;
+            mp1.erase(ch);
         }
+        ans = max(ans, (int)mp1.size() + (int)mp2.size());
     }
 
-    cout << num << " " << n - num << endl;
+    cout << ans << endl;
 }
 
 int32_t main()
