@@ -28,48 +28,38 @@ int __lcm(int a, int b) { return (a * b) / __gcd(a, b); }
 
 void vishu()
 {
-    int a, b;
-    cin >> a >> b;
+    int n, x;
+    cin >> n >> x;
 
-    if (a > b)
+    vi vec(n);
+    loop(i, 0, n)
     {
-        swap(a, b);
+        cin >> vec[i];
     }
 
-    int ans = 0;
+    // inequality was mod of v - ai should be <= x then on solving it we can say that -x <= v-ai <= x so then ai-x <= v <= ai+x
 
-    // chote wale se bade ki taraf jana hai toh greedy socho sabse pehle sabse bade 8 se then 4 se then 2 se...agr kisi se ni kar paa rahe then break maanlo multiply karke hi ans tumahra b se jyada aarha hai then phir break -1
-    while (a <= b)
+    vi interval = {vec[0] - x, vec[0] + x};
+    int changes = 0;
+    loop(i, 1, n)
     {
-        if (a * 8 <= b)
+        vi new_interval = {vec[i] - x, vec[i] + x};
+        vi overlap = {max(interval[0], new_interval[0]), min(interval[1], new_interval[1])};
+        // case when jab kuch overlap/intersection ni ho rha hai toh ab mujhe change hi karna padega v ko toh ab jo naya bana hai current uske equal kardo interval ko
+        if (overlap[0] > overlap[1])
         {
-            a *= 8;
-            ans++;
+            changes++;
+            interval = new_interval;
         }
-        else if (a * 4 <= b)
-        {
-            a *= 4;
-            ans++;
-        }
-        else if (a * 2 <= b)
-        {
-            a *= 2;
-            ans++;
-        }
+
+        // agr hai overlap then jo sabse common hai andar ka intersection ka abhi tak ka uske equal kardo bss
         else
         {
-            break;
+            interval = overlap;
         }
     }
 
-    if (a == b)
-    {
-        cout << ans << endl;
-    }
-    else
-    {
-        cout << -1 << endl;
-    }
+    cout << changes << endl;
 }
 
 int32_t main()

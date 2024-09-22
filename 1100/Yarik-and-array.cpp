@@ -28,48 +28,41 @@ int __lcm(int a, int b) { return (a * b) / __gcd(a, b); }
 
 void vishu()
 {
-    int a, b;
-    cin >> a >> b;
+    int n;
+    cin >> n;
 
-    if (a > b)
+    vi vec(n);
+    loop(i, 0, n)
     {
-        swap(a, b);
+        cin >> vec[i];
     }
 
-    int ans = 0;
+    int sum = vec[0];
 
-    // chote wale se bade ki taraf jana hai toh greedy socho sabse pehle sabse bade 8 se then 4 se then 2 se...agr kisi se ni kar paa rahe then break maanlo multiply karke hi ans tumahra b se jyada aarha hai then phir break -1
-    while (a <= b)
+    // answer ko sum (vec[0]) hi lelo warna -1000 wale test case m answer INT_MIN hi aayega 
+    int ans = sum;
+    loop(i, 1, n)
     {
-        if (a * 8 <= b)
+        // parity find karni hai negative numbers ki toh abs use karna hota h kyuki -3%2=-1 and 3%2==1 toh difference aa sakta hai hai 3 -3 hote toh hai dono ki odd par answer different aata bsss 
+        if (abs(vec[i]) % 2 != abs(vec[i - 1]) % 2)
         {
-            a *= 8;
-            ans++;
-        }
-        else if (a * 4 <= b)
-        {
-            a *= 4;
-            ans++;
-        }
-        else if (a * 2 <= b)
-        {
-            a *= 2;
-            ans++;
+            sum += vec[i];
         }
         else
         {
-            break;
+            sum = vec[i];
         }
+
+        // bss ye ek negative wala case hai ki manlo -1 4 hai then sum karoge toh 3 aayega par sum < vec[i] se toh aisa ho toh bhai sum ko issi element ke equal kardo bss
+        if (sum < vec[i])
+        {
+            sum = vec[i];
+        }
+
+        ans = max(ans, sum);
     }
 
-    if (a == b)
-    {
-        cout << ans << endl;
-    }
-    else
-    {
-        cout << -1 << endl;
-    }
+    cout << ans << endl;
 }
 
 int32_t main()

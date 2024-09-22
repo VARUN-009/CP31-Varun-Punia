@@ -8,6 +8,8 @@ const int MOD = 1e9 + 7;
 #define int long long
 #define vi vector<int>
 #define vii vector<vector<int>>
+#define vip vector<pair<int, int>>
+#define pii pair<int, int>
 #define len(x) (x).size()
 #define pb push_back
 #define all(n) n.begin(), n.end()
@@ -26,29 +28,34 @@ int __lcm(int a, int b) { return (a * b) / __gcd(a, b); }
 
 void vishu()
 {
-    string a, b;
-    cin >> a >> b;
+    int n;
+    cin >> n;
 
-    int m = len(a);
-    int n = len(b);
+    vi vec(n);
+    int cnt = 0;
+    set<int> st;
+    bool found = false;
 
-    // constrains chote hai toh m brute force kar sakta hu toh substrings nikalte raho bss and then usko dusre m find karo and agr mil gya then uski length ko string ki length se minus...m chahta hu ki badi se badi subtring common mile dono m jiss se ki characters km hi htane pade
-    // worst case m toh aisa ho sakta hai na ki dono m se koi bhi common ni hai toh dono ke saare hi lelo 
-    int ans = m+n;
-    loop(i, 0, m)
+    // Single element is also a subarray
+    // agr koi aisa element mil gya jo 2 baar aarha hai toh bss bn gayi baat bn jayega sub array par agr sab alg elements hai then nhi ho payega kyuki power karege na toh alg hi answer aayega 
+    loop(i, 0, n)
     {
-        // j=1 because mininmum 1 length ki leni hai na
-        loop(j, 1, m - i + 1)
+        cin >> vec[i];
+        if (st.count(vec[i]))
         {
-            string str = a.substr(i, j);
-            if (b.find(str) != string::npos)
-            {
-                ans = min(ans, (m - j) + (n - j));
-            }
+            found = true;
         }
+        st.insert(vec[i]);
     }
 
-    cout << ans << endl;
+    if (found)
+    {
+        cout << "YES" << endl;
+    }
+    else
+    {
+        cout << "NO" << endl;
+    }
 }
 
 int32_t main()

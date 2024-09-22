@@ -8,6 +8,8 @@ const int MOD = 1e9 + 7;
 #define int long long
 #define vi vector<int>
 #define vii vector<vector<int>>
+#define vip vector<pair<int, int>>
+#define pii pair<int, int>
 #define len(x) (x).size()
 #define pb push_back
 #define all(n) n.begin(), n.end()
@@ -26,26 +28,23 @@ int __lcm(int a, int b) { return (a * b) / __gcd(a, b); }
 
 void vishu()
 {
-    string a, b;
-    cin >> a >> b;
+    int w, h;
+    cin >> w >> h;
+    int ans = INT_MIN;
 
-    int m = len(a);
-    int n = len(b);
-
-    // constrains chote hai toh m brute force kar sakta hu toh substrings nikalte raho bss and then usko dusre m find karo and agr mil gya then uski length ko string ki length se minus...m chahta hu ki badi se badi subtring common mile dono m jiss se ki characters km hi htane pade
-    // worst case m toh aisa ho sakta hai na ki dono m se koi bhi common ni hai toh dono ke saare hi lelo 
-    int ans = m+n;
-    loop(i, 0, m)
+    // points ascending order m de rakhe hai toh 1st and last point lelo vo base bn jayega toh base maximum ho gya then agr horizontal points liye hai toh y axis and vertical points liye hai toh x axis ho jayega height and bss base * height hi karna hai kyuki triangle area = 1/2 * b* h toh iska double is b*h
+    loop(i, 0, 4)
     {
-        // j=1 because mininmum 1 length ki leni hai na
-        loop(j, 1, m - i + 1)
+        int k;
+        cin >> k;
+        vi points(k);
+
+        loop(i, 0, k)
         {
-            string str = a.substr(i, j);
-            if (b.find(str) != string::npos)
-            {
-                ans = min(ans, (m - j) + (n - j));
-            }
+            cin >> points[i];
         }
+
+        ans = max(ans, (points[k - 1] - points[0]) * (i < 2 ? h : w));
     }
 
     cout << ans << endl;

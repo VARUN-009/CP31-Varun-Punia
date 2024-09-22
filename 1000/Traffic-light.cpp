@@ -7,7 +7,6 @@ const int MOD = 1e9 + 7;
 // Utils
 #define int long long
 #define vi vector<int>
-#define vii vector<vector<int>>
 #define len(x) (x).size()
 #define pb push_back
 #define all(n) n.begin(), n.end()
@@ -26,27 +25,44 @@ int __lcm(int a, int b) { return (a * b) / __gcd(a, b); }
 
 void vishu()
 {
-    string a, b;
-    cin >> a >> b;
+    int n;
+    cin >> n;
 
-    int m = len(a);
-    int n = len(b);
+    char ch;
+    cin >> ch;
 
-    // constrains chote hai toh m brute force kar sakta hu toh substrings nikalte raho bss and then usko dusre m find karo and agr mil gya then uski length ko string ki length se minus...m chahta hu ki badi se badi subtring common mile dono m jiss se ki characters km hi htane pade
-    // worst case m toh aisa ho sakta hai na ki dono m se koi bhi common ni hai toh dono ke saare hi lelo 
-    int ans = m+n;
-    loop(i, 0, m)
+    string str;
+    cin >> str;
+
+    // vo wapsi start se light change hogi toh meine double leli string ko matlab 2 baar then iterate karo and sabse bada distance jo hai vo lena hai bss and jab jo ch hai vo legth ke aage mile then break kardo 
+    string help = str;
+    help += str;
+    int count = 0;
+    bool found = false;
+    int idx = -1;
+    int ans = INT_MIN;
+    loop(i, 0, len(help))
     {
-        // j=1 because mininmum 1 length ki leni hai na
-        loop(j, 1, m - i + 1)
+        if (!found && help[i] == ch)
         {
-            string str = a.substr(i, j);
-            if (b.find(str) != string::npos)
-            {
-                ans = min(ans, (m - j) + (n - j));
-            }
+            found = true;
+            idx = i;
+        }
+
+        if (idx > n)
+        {
+            break;
+        }
+
+        if (found && help[i] == 'g')
+        {
+            ans = max(ans, i - idx);
+            found = false;
+            idx = -1;
         }
     }
+
+    
 
     cout << ans << endl;
 }
