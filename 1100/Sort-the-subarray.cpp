@@ -3,10 +3,6 @@ using namespace std;
 
 // Constants
 const int MOD = 1e9 + 7;
-#define ios                           \
-    ios_base::sync_with_stdio(false); \
-    cin.tie(0);                       \
-    cout.tie(0);
 
 // Utils
 #define int long long
@@ -32,40 +28,53 @@ int __lcm(int a, int b) { return (a * b) / __gcd(a, b); }
 
 void vishu()
 {
-    int n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
 
-    vi first(n), second(n);
-
+    vi vec1(n);
     loop(i, 0, n)
     {
-        cin >> first[i];
+        cin >> vec1[i];
     }
 
+    vi vec2(n);
     loop(i, 0, n)
     {
-        cin >> second[i];
+        cin >> vec2[i];
     }
 
-    int ans = 0;
-    int sum = 0;
-    int again = 0;
+    int left = -1, right = -1;
 
-    // dekho jisme ho usko lelo sum m add kardo and then jo abhi tak second time sabse max value hai usko hi k-i-1 times lelo aise karlo... har case ke liye check karlo and then end m ans is max. k-i-1 because i times toh tum first wala hi le rahe ho aage badh rahe ho and then bche hue times second wala that's why min(n,k) because k=2 and n=5 hai toh 2 hi baar loge na that's why
-    loop(i, 0, min(n, k))
+    // single loop m hi dono ka nikal liya ki left and right pos konsi hogi
+    loop(i, 0, n)
     {
-        sum += first[i];
-        again = max(again, second[i]);
-        ans = max(ans, sum + again * (k - i - 1));
+        if (vec1[i] != vec2[i])
+        {
+            right = i;
+
+            if (left == -1)
+            {
+                left = i;
+            }
+        }
     }
 
-    cout << ans << endl;
+    // ab dekho agr left pos m jo hai vo mera left-1 se >= hai means [left-1] <= [left] toh yaar m left ko aur km kar sakta hu na kyuki sort karunga toh bhi chota wala pehle hi aayega and same applies for right wala agr [right] <= [right+1] toh m usko include kar sakta hu aur
+    while (left > 0 && vec2[left - 1] <= vec2[left])
+    {
+        left--;
+    }
+
+    while (right < n-1 && vec2[right] <= vec2[right + 1])
+    {
+        right++;
+    }
+
+    cout << left + 1 << " " << right + 1 << endl;
 }
 
 int32_t main()
 {
-    ios;
-
     int t;
     cin >> t;
 

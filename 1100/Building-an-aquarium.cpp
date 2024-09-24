@@ -2,9 +2,13 @@
 using namespace std;
 
 // Constants
-const int MOD = 1e9 + 7; 
+const int MOD = 1e9 + 7;
+#define ios                           \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(0);                       \
+    cout.tie(0);
 
-// Utils 
+// Utils
 #define int long long
 #define vi vector<int>
 #define vii vector<vector<int>>
@@ -18,14 +22,13 @@ const int MOD = 1e9 + 7;
 
 // Control Flow
 #define loop(i, a, b) for (int i = a; i < (b); i++)
-#define rloop(i, b, a) for (int i = (b)-1; i >= a; i--)
+#define rloop(i, b, a) for (int i = (b) - 1; i >= a; i--)
 #define trav(a, x) for (auto &a : x)
 
 // Helper Functions
 bool odd(int num) { return ((num & 1) == 1); }
 bool even(int num) { return ((num & 1) == 0); }
-int __lcm(int a, int b) { return (a * b) / __gcd(a,b); }
-
+int __lcm(int a, int b) { return (a * b) / __gcd(a, b); }
 
 void vishu()
 {
@@ -33,10 +36,12 @@ void vishu()
 
 int32_t main()
 {
+    ios;
+
     int t;
     cin >> t;
 
-    while(t--)
+    while (t--)
     {
         vishu();
     }

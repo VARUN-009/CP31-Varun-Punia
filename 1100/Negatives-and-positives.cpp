@@ -32,34 +32,47 @@ int __lcm(int a, int b) { return (a * b) / __gcd(a, b); }
 
 void vishu()
 {
-    int n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
 
-    vi first(n), second(n);
-
-    loop(i, 0, n)
-    {
-        cin >> first[i];
-    }
-
-    loop(i, 0, n)
-    {
-        cin >> second[i];
-    }
-
-    int ans = 0;
+    vi vec(n);
+    bool found = false;
+    int negatives = 0;
     int sum = 0;
-    int again = 0;
+    int mini = INT_MAX;
 
-    // dekho jisme ho usko lelo sum m add kardo and then jo abhi tak second time sabse max value hai usko hi k-i-1 times lelo aise karlo... har case ke liye check karlo and then end m ans is max. k-i-1 because i times toh tum first wala hi le rahe ho aage badh rahe ho and then bche hue times second wala that's why min(n,k) because k=2 and n=5 hai toh 2 hi baar loge na that's why
-    loop(i, 0, min(n, k))
+    // calculate karne ki need hi ni operations karne ki need hi ni hai bss check karlo negatives kitne hai odd hai toh bss zero hai ki ni kyuki -0 = 0 toh sab phir positive bn sakte hai and agr zero nhi hai toh phir sabse chota element hta do kyuki ye operation tum kitni hi baar kar sakte ho
+    loop(i, 0, n)
     {
-        sum += first[i];
-        again = max(again, second[i]);
-        ans = max(ans, sum + again * (k - i - 1));
+        cin >> vec[i];
+        sum += abs(vec[i]);
+        if (vec[i] < 0)
+        {
+            negatives++;
+        }
+        if (vec[i] == 0)
+        {
+            found = true;
+        }
+
+        mini = min(mini, abs(vec[i]));
     }
 
-    cout << ans << endl;
+    if (negatives % 2 != 0)
+    {
+        if (found)
+        {
+            cout << sum << endl;
+        }
+        else
+        {
+            cout << sum - 2 * abs(mini) << endl;
+        }
+    }
+    else
+    {
+        cout << sum << endl;
+    }
 }
 
 int32_t main()

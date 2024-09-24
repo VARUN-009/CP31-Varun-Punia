@@ -3,10 +3,6 @@ using namespace std;
 
 // Constants
 const int MOD = 1e9 + 7;
-#define ios                           \
-    ios_base::sync_with_stdio(false); \
-    cin.tie(0);                       \
-    cout.tie(0);
 
 // Utils
 #define int long long
@@ -35,28 +31,25 @@ void vishu()
     int n, k;
     cin >> n >> k;
 
-    vi first(n), second(n);
-
+    vi vec(n);
     loop(i, 0, n)
     {
-        cin >> first[i];
+        cin >> vec[i];
     }
 
-    loop(i, 0, n)
+    sort(all(vec));
+    vi prefix(n + 1, 0);
+    loop(i, 1, n+1)
     {
-        cin >> second[i];
+        prefix[i] = prefix[i - 1] + vec[i - 1];
     }
 
-    int ans = 0;
-    int sum = 0;
-    int again = 0;
+    int ans = LLONG_MIN;
 
-    // dekho jisme ho usko lelo sum m add kardo and then jo abhi tak second time sabse max value hai usko hi k-i-1 times lelo aise karlo... har case ke liye check karlo and then end m ans is max. k-i-1 because i times toh tum first wala hi le rahe ho aage badh rahe ho and then bche hue times second wala that's why min(n,k) because k=2 and n=5 hai toh 2 hi baar loge na that's why
-    loop(i, 0, min(n, k))
+    // n+1 prefix because ek case m prefix ka index -1 bhi jaa rha hai toh agr n hota toh -1 so n+1 means 0  -- always try to take prefix as n+1
+    loop(i, 0, k + 1)
     {
-        sum += first[i];
-        again = max(again, second[i]);
-        ans = max(ans, sum + again * (k - i - 1));
+        ans = max(ans, prefix[n - i] - prefix[2 * (k - i)]);
     }
 
     cout << ans << endl;
@@ -64,8 +57,6 @@ void vishu()
 
 int32_t main()
 {
-    ios;
-
     int t;
     cin >> t;
 
