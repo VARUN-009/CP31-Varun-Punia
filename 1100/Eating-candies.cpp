@@ -32,42 +32,46 @@ int __lcm(int a, int b) { return (a * b) / __gcd(a, b); }
 
 void vishu()
 {
-    int n, x;
-    cin >> n >> x;
+    int n;
+    cin >> n;
 
     vi vec(n);
+
     loop(i, 0, n)
     {
         cin >> vec[i];
     }
 
-    int low = 0;
-    int high = 2e9;
+    int left = 0;
+    int right = n - 1;
+    int leftsum = 0;
+    int rightsum = 0;
     int ans = 0;
 
-    // we have to find the maximum height with a certain upper bound ki max upr itna hi jaa sakta hai x toh uske according nikalni hai...to binary search on answer ki abhi itni mili hai dekhte hai iske aage milegi ya nhi...high ko 2e9 ya max lelo sabse and then mid nikalo.
-    while (low <= high)
+    // left se add karte chlo and right se add karte chlo agr kisi point m dono ke sum same ho jaye toh number of candies count karlo.
+    while (left <= right)
     {
-        int mid = low + (high - low) / 2;
-        int sum = 0;
-        trav(ele, vec)
+        if (leftsum == rightsum)
         {
-            sum += max(mid - ele, 0LL);
+            ans = max(ans, left + (n - right - 1));
+            leftsum += vec[left++];
         }
-
-        if (sum > x)
+        else if (leftsum < rightsum)
         {
-            // ye height ho gayi jyada toh high ko km karo
-            high = mid - 1;
+            leftsum += vec[left++];
         }
         else
         {
-            // storing the ans as current mid  and aur aage dekho ki aur badi mil sakti hai ki nhi
-            ans = mid;
-            low = mid + 1;
+            rightsum += vec[right--];
         }
     }
 
+    // incase saari hi candies kha sakte hai toh phir n ho jayega na ans.
+    if (left > right && leftsum == rightsum)
+    {
+        ans = max(ans, n);
+    }
+    
     cout << ans << endl;
 }
 

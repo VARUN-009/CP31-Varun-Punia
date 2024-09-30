@@ -32,43 +32,34 @@ int __lcm(int a, int b) { return (a * b) / __gcd(a, b); }
 
 void vishu()
 {
-    int n, x;
-    cin >> n >> x;
+    int n, coins;
+    cin >> n >> coins;
 
     vi vec(n);
     loop(i, 0, n)
     {
         cin >> vec[i];
+        vec[i] = vec[i] + i + 1;
     }
 
-    int low = 0;
-    int high = 2e9;
-    int ans = 0;
+    sort(all(vec));
 
-    // we have to find the maximum height with a certain upper bound ki max upr itna hi jaa sakta hai x toh uske according nikalni hai...to binary search on answer ki abhi itni mili hai dekhte hai iske aage milegi ya nhi...high ko 2e9 ya max lelo sabse and then mid nikalo.
-    while (low <= high)
+    // jitni pos aage jana hai and then uski cost toh dekha jaye toh total ho gya pos + cost toh meine array ka element hi aise bna liya ab then usko sort karliya ki sabse km cost itni chahiye then badh rahi hai toh agr coins se jyada ho gayi cost toh bss jo pos hai vo hi hai ans and agr poora array iterate kar gaye then teleports will be n.
+
+    // We can also use a priority queue in this as it will have min at the top.
+
+    // lene ko hum vec pair<int,int> bhi le sakte the cost, pos ka toh dono ko subtract karte coins se par this is the simplest way. 
+    loop(i, 0, n)
     {
-        int mid = low + (high - low) / 2;
-        int sum = 0;
-        trav(ele, vec)
+        coins -= vec[i];
+        if (coins < 0)
         {
-            sum += max(mid - ele, 0LL);
-        }
-
-        if (sum > x)
-        {
-            // ye height ho gayi jyada toh high ko km karo
-            high = mid - 1;
-        }
-        else
-        {
-            // storing the ans as current mid  and aur aage dekho ki aur badi mil sakti hai ki nhi
-            ans = mid;
-            low = mid + 1;
+            cout << i << endl;
+            return;
         }
     }
 
-    cout << ans << endl;
+    cout << n << endl;
 }
 
 int32_t main()

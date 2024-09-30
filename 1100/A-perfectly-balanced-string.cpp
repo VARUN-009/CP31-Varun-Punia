@@ -32,43 +32,27 @@ int __lcm(int a, int b) { return (a * b) / __gcd(a, b); }
 
 void vishu()
 {
-    int n, x;
-    cin >> n >> x;
+    string s;
+    cin >> s;
 
-    vi vec(n);
-    loop(i, 0, n)
+    // jab jab unique cheeje chahiye count chahiye - we can use set
+    set<char> st;
+    trav(ch, s)
     {
-        cin >> vec[i];
+        st.insert(ch);
     }
 
-    int low = 0;
-    int high = 2e9;
-    int ans = 0;
-
-    // we have to find the maximum height with a certain upper bound ki max upr itna hi jaa sakta hai x toh uske according nikalni hai...to binary search on answer ki abhi itni mili hai dekhte hai iske aage milegi ya nhi...high ko 2e9 ya max lelo sabse and then mid nikalo.
-    while (low <= high)
+    bool correct = true;
+    // perfectly balanced bnane ke liye mujhe aisi substring ni chahiye jisme ek char 2 baar aarha ho saath m ya uss substring m agr aaya toh phir difference > 1 ho jayega toh bss mujhe ye dekhna h ki ek toh unique characters kitne hai and periodic hona chahiye ek baar string m saare unique aane ke baad then phirse repeat hona chahiye ni toh balanced ni hogi perfectly.  -- toh chahiye hi aisi ki vo repeat kare after getting all the unique characters 
+    loop(i, 0, len(s))
     {
-        int mid = low + (high - low) / 2;
-        int sum = 0;
-        trav(ele, vec)
+        if (s[i] != s[i % st.size()])
         {
-            sum += max(mid - ele, 0LL);
-        }
-
-        if (sum > x)
-        {
-            // ye height ho gayi jyada toh high ko km karo
-            high = mid - 1;
-        }
-        else
-        {
-            // storing the ans as current mid  and aur aage dekho ki aur badi mil sakti hai ki nhi
-            ans = mid;
-            low = mid + 1;
+            correct = false;
         }
     }
 
-    cout << ans << endl;
+    correct ? cout << "YES" << endl : cout << "NO" << endl;
 }
 
 int32_t main()

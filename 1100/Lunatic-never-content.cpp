@@ -32,40 +32,21 @@ int __lcm(int a, int b) { return (a * b) / __gcd(a, b); }
 
 void vishu()
 {
-    int n, x;
-    cin >> n >> x;
+    int n;
+    cin >> n;
 
     vi vec(n);
+
     loop(i, 0, n)
     {
         cin >> vec[i];
     }
 
-    int low = 0;
-    int high = 2e9;
+    //for palindrome ai = an-i-1 so in this ai mod x = a n-i-1 mod x --> (ai - an-i+1) % x = 0 which means x divides (ai - an-i+1) so iterate karke i ki saari values m and then nikal le jo jo values hai then tere pass values hai and we want ki x in sabko divide kare toh mujhe ek aisa number chahiye jo sabse bada ho and in sabko divide kare - GCD greatest common divisor.  abs for -ve numbers
     int ans = 0;
-
-    // we have to find the maximum height with a certain upper bound ki max upr itna hi jaa sakta hai x toh uske according nikalni hai...to binary search on answer ki abhi itni mili hai dekhte hai iske aage milegi ya nhi...high ko 2e9 ya max lelo sabse and then mid nikalo.
-    while (low <= high)
+    loop(i, 0, n)
     {
-        int mid = low + (high - low) / 2;
-        int sum = 0;
-        trav(ele, vec)
-        {
-            sum += max(mid - ele, 0LL);
-        }
-
-        if (sum > x)
-        {
-            // ye height ho gayi jyada toh high ko km karo
-            high = mid - 1;
-        }
-        else
-        {
-            // storing the ans as current mid  and aur aage dekho ki aur badi mil sakti hai ki nhi
-            ans = mid;
-            low = mid + 1;
-        }
+        ans = __gcd(ans, abs(vec[i] - vec[n - i - 1]));
     }
 
     cout << ans << endl;

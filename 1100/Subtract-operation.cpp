@@ -32,43 +32,31 @@ int __lcm(int a, int b) { return (a * b) / __gcd(a, b); }
 
 void vishu()
 {
-    int n, x;
-    cin >> n >> x;
+    int n, k;
+    cin >> n >> k;
 
     vi vec(n);
+    map<int, int> mp;
+
+    // a b c d let's say we remove b so a-b, c-b, d-b and then say we remove a-b so c-b-(a-b), d-b-(a-b)  which ultimately is c-b, d-a, so at the end we will always get difference of two elements of array so jab end m mujhe difference hi mil rahe hai toh m ek kaam karta hu na jo jo possible differnces hai check karleta hu ki koi k ke equal hai ki nhi.
+
+    // instead of map we can also sort array and use 2 pointers to check ki difference k ke equal hai ki nhi hai
     loop(i, 0, n)
     {
         cin >> vec[i];
+        mp[vec[i]]++;
     }
 
-    int low = 0;
-    int high = 2e9;
-    int ans = 0;
-
-    // we have to find the maximum height with a certain upper bound ki max upr itna hi jaa sakta hai x toh uske according nikalni hai...to binary search on answer ki abhi itni mili hai dekhte hai iske aage milegi ya nhi...high ko 2e9 ya max lelo sabse and then mid nikalo.
-    while (low <= high)
+    loop(i, 0, n)
     {
-        int mid = low + (high - low) / 2;
-        int sum = 0;
-        trav(ele, vec)
+        if (mp[vec[i] - k] != 0)
         {
-            sum += max(mid - ele, 0LL);
-        }
-
-        if (sum > x)
-        {
-            // ye height ho gayi jyada toh high ko km karo
-            high = mid - 1;
-        }
-        else
-        {
-            // storing the ans as current mid  and aur aage dekho ki aur badi mil sakti hai ki nhi
-            ans = mid;
-            low = mid + 1;
+            cout << "YES" << endl;
+            return;
         }
     }
 
-    cout << ans << endl;
+    cout << "NO" << endl;
 }
 
 int32_t main()
