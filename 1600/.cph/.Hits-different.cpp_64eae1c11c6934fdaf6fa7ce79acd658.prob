@@ -1,0 +1,1 @@
+{"name":"Local: Hits-different","url":"c:\\Users\\VARUN PUNIA\\Desktop\\CP31\\1600\\Hits-different.cpp","tests":[{"id":1733087488848,"input":"10\n9\n1\n2\n3\n4\n5\n6\n10\n1434\n1000000\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\VARUN PUNIA\\Desktop\\CP31\\1600\\Hits-different.cpp","group":"local","local":true}
